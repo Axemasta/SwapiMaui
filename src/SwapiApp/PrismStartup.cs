@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.Extensions.Caching.Memory;
 using SwapiApp.Abstractions;
 using SwapiApp.Pages;
 using SwapiApp.Services;
@@ -25,7 +26,15 @@ internal static class PrismStartup
 		containerRegistry.RegisterForNavigation<PeoplePage, PeopleViewModel>();
 		containerRegistry.RegisterForNavigation<PlanetsPage, PlanetsViewModel>();
 
-		containerRegistry.Register<ISwapiService, SwapiService>();
+		containerRegistry.Register<SwapiService>();
+		containerRegistry.RegisterSingleton<ISwapiService>(c =>
+		{
+			var logger = c.Resolve<ILogger<CachedSwapiService>>();
+			var memoryCache = c.Resolve<IMemoryCache>();
+			var swapiService = c.Resolve<SwapiService>();
+			
+			return new CachedSwapiService(logger, memoryCache, swapiService);
+		});
 	}
 
 	private static async Task OnAppStart(IContainerProvider containerProvider, INavigationService navigationService)

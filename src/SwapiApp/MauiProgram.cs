@@ -19,7 +19,10 @@ public static class MauiProgram
 
 #if DEBUG
         builder.Logging.AddDebug();
+        builder.Logging.SetMinimumLevel(LogLevel.Debug);
 #endif
+
+        builder.Services.AddMemoryCache();
 
         builder.Services.AddRefitClient<ISwapiClient>()
             .ConfigureHttpClient(client =>
