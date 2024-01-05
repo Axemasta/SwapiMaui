@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
 using SwapiApp.Pages;
 
 namespace SwapiApp;
@@ -20,6 +19,10 @@ internal static class PrismStartup
 	private static void RegisterTypes(IContainerRegistry containerRegistry)
 	{
 		containerRegistry.RegisterForNavigation<GalleryPage, GalleryViewModel>();
+
+		containerRegistry.RegisterForNavigation<FilmsPage, FilmsViewModel>();
+		containerRegistry.RegisterForNavigation<PeoplePage, PeopleViewModel>();
+		containerRegistry.RegisterForNavigation<PlanetsPage, PlanetsViewModel>();
 	}
 
 	private static async Task OnAppStart(IContainerProvider containerProvider, INavigationService navigationService)

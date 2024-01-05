@@ -1,8 +1,8 @@
 namespace SwapiApp.Pages;
 
-public partial class GalleryPage : ContentPage
+public partial class PlanetsPage : ContentPage
 {
-    public GalleryPage()
+    public PlanetsPage()
     {
         InitializeComponent();
     }
