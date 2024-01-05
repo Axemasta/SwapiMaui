@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Refit;
+using SwapiApp.Abstractions;
 
 namespace SwapiApp;
 
@@ -19,6 +20,12 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+
+        builder.Services.AddRefitClient<ISwapiClient>()
+            .ConfigureHttpClient(client =>
+            {
+                client.BaseAddress = new Uri("https://swapi.dev/api/");
+            });
 
         return builder.Build();
     }
