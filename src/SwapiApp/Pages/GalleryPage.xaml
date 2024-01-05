@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:SwapiApp.ViewModels"
+             x:DataType="viewmodels:GalleryViewModel"
+             Title="{Binding Title}"
+             x:Class="SwapiApp.Pages.GalleryPage">
+    <ContentPage.Content>
+        <Label Text="Gallery Ballery"/>
+    </ContentPage.Content>
+</ContentPage>
