@@ -6,4 +6,15 @@
     <PropertyGroup Condition="$(UseProxy)">
         <DefineConstants>USE_PROXY</DefineConstants>
     </PropertyGroup>
+
+    <PropertyGroup>
+        <IosTargetFramework>net8.0-ios</IosTargetFramework>
+        <AndroidTargetFramework>net8.0-android</AndroidTargetFramework>
+        <MacTargetFramework>net8.0-maccatalyst</MacTargetFramework>
+        <WindowsTargetFramework>net8.0-windows10.0.19041.0</WindowsTargetFramework>
+
+        <MauiPlatformTargetFrameworks>$(AndroidTargetFramework);$(IosTargetFramework);$(MacTargetFramework)</MauiPlatformTargetFrameworks>
+        <MauiPlatformTargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(AndroidTargetFramework);$(IosTargetFramework);$(MacTargetFramework)$(WindowsTargetFramework)</MauiPlatformTargetFrameworks>
+    </PropertyGroup>
+
 </Project>
