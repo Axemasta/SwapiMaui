@@ -20,7 +20,7 @@ public class FilmDto
     public required string Producer { get; set; }
     
     [JsonPropertyName("release_date")]
-    public required string ReleaseDate { get; set; }
+    public required DateOnly ReleaseDate { get; set; }
     
     [JsonPropertyName("characters")]
     public required List<string> Characters { get; set; }

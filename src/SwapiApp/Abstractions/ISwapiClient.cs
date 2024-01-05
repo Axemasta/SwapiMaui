@@ -13,4 +13,7 @@ public interface ISwapiClient
     
     [Get("/planets/{planetId}")]
     Task<IApiResponse<FilmDto>> GetPlanet(int planetId);
+
+    [Get("/films")]
+    Task<IApiResponse<PagedResult<FilmDto>>> GetFilms();
 }

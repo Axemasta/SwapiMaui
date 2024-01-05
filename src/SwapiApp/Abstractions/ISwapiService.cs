@@ -7,4 +7,6 @@ public interface ISwapiService
     Task<Person?> GetPerson(int personId);
 
     Task<Planet?> GetPlanet(int planetId);
+
+    Task<List<Film>?> GetFilms();
 }

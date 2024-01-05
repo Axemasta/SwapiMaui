@@ -7,4 +7,6 @@ namespace SwapiApp.Mappers;
 public partial class FilmMapper
 {
     public static partial Film FromDto(FilmDto dto);
+
+    public static partial List<Film> FromDtos(List<FilmDto> dtos);
 }

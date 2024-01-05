@@ -12,5 +12,5 @@ public class Film
 
     public required string Producer { get; set; }
     
-    public required string ReleaseDate { get; set; }
+    public required DateOnly ReleaseDate { get; set; }
 }

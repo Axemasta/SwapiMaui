@@ -1,4 +1,4 @@
-using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using SwapiApp.Abstractions;
 
 namespace SwapiApp.ViewModels;
@@ -6,6 +6,8 @@ namespace SwapiApp.ViewModels;
 public partial class FilmsViewModel : PageViewModel
 {
     private readonly ISwapiService swapiService;
+
+    public ObservableCollection<Film> Films { get; } = new ObservableCollection<Film>();
     
     public FilmsViewModel(
         ILogger<FilmsViewModel> logger, 
@@ -14,14 +16,22 @@ public partial class FilmsViewModel : PageViewModel
         : base(logger, navigationService)
     {
         this.swapiService = swapiService;
-        Title = "Planets";
+        Title = "Films";
     }
 
-    [RelayCommand]
-    private async Task GetFilm()
+    public override async void Initialize(INavigationParameters navigationParameters)
     {
-        var film = await swapiService.GetFilm(1);
-        
-        logger.LogInformation("Downloaded film: {Film}", film);
+        var films = await swapiService.GetFilms();
+
+        if (films is null)
+        {
+            logger.LogWarning("No films returned from api");
+            return;
+        }
+
+        foreach (var film in films.OrderBy(f => f.ReleaseDate))
+        {
+            Films.Add(film);
+        }
     }
 }

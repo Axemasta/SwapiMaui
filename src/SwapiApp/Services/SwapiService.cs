@@ -55,5 +55,24 @@ public class SwapiService : ISwapiService
         throw new NotImplementedException();
     }
 
+    public async Task<List<Film>?> GetFilms()
+    {
+        var apiResult = await swapiClient.GetFilms();
+
+        if (!apiResult.IsSuccessStatusCode)
+        {
+            logger.LogWarning("Api call for all films was not successfull: {StatusCode}, full response : {Result}", apiResult.StatusCode, apiResult);
+            return null;
+        }
+
+        if (apiResult.Content is null)
+        {
+            logger.LogWarning("Api call for all film was successful however contents was null, check deserialization worked");
+            return null;
+        }
+
+        return FilmMapper.FromDtos(apiResult.Content.Results);
+    }
+
     #endregion Interface Implementations
 }

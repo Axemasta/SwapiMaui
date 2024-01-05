@@ -1,8 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
-        <UseNativeHttpHandler>false</UseNativeHttpHandler>
-    </PropertyGroup>
     
     <PropertyGroup>
         <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
@@ -59,6 +55,10 @@
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
     </ItemGroup>
+
+    <!--    <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">-->
+    <!--        <UseNativeHttpHandler>false</UseNativeHttpHandler>-->
+    <!--    </PropertyGroup>-->
 
     <ItemGroup>
         <PackageReference Include="Ardalis.GuardClauses" Version="4.3.0" />

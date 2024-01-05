@@ -72,5 +72,22 @@ public class CachedSwapiService(ILogger<CachedSwapiService> logger, IMemoryCache
         return planet;
     }
 
+    public async Task<List<Film>?> GetFilms()
+    {
+        var cacheKey = $"Films";
+        
+        if (memoryCache.TryGetValue(cacheKey, out List<Film>? films))
+        {
+            logger.LogDebug("Retrieved films from cache");
+            return films;
+        }
+        
+        films = await swapiService.GetFilms();
+
+        memoryCache.Set(cacheKey, films);
+
+        return films;
+    }
+
     #endregion Interface Implementations
 }
