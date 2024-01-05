@@ -8,11 +8,11 @@ public class PagedResult<T>
     public int Count { get; set; }
     
     [JsonPropertyName("next")]
-    public string Next { get; set; }
+    public string? Next { get; set; }
     
     [JsonPropertyName("previous")]
-    public string Previous { get; set; }
+    public string? Previous { get; set; }
     
     [JsonPropertyName("results")]
-    public List<T> Results { get; set; }
+    public required List<T> Results { get; set; }
 }
