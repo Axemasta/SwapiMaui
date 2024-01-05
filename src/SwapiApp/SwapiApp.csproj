@@ -56,9 +56,9 @@
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
     </ItemGroup>
 
-    <!--    <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">-->
-    <!--        <UseNativeHttpHandler>false</UseNativeHttpHandler>-->
-    <!--    </PropertyGroup>-->
+    <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' And $(UseProxy)">
+        <UseNativeHttpHandler>false</UseNativeHttpHandler>
+    </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Ardalis.GuardClauses" Version="4.3.0" />

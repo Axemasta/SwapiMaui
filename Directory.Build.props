@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+        <UseProxy>false</UseProxy>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(UseProxy)">
+        <DefineConstants>USE_PROXY</DefineConstants>
+    </PropertyGroup>
+</Project>
