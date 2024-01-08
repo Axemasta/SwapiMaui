@@ -15,12 +15,16 @@ The sample app is not fully implemented yet, currently only films has any ui to 
 
 ## iOS
 
-I have this working on iOS, you need to uncomment the setup code for this to work.
+There is some jank with the iOS implementation. You cannot use the native `NSURLSessionHandler` in maui (this did work in Xamarin), see [this issue](https://github.com/xamarin/xamarin-macios/issues/18635). Instead you have to use the dotnet handler, this is quite annoying and essentially makes adding proxies as a feature to iOS maui apps dead until this gets changed.
 
-The one caviat is that iOS cannot use the native `NSURLSessionHandler` in maui (this did work in Xamarin), see [this issue](https://github.com/xamarin/xamarin-macios/issues/18635). Instead you have to use the dotnet handler, this is quite annoying and essentially makes adding proxies as a feature to iOS maui apps dead until this gets changed.
+The iOS proxy code changes are automatically handled in this sample, see the [csproj](https://github.com/Axemasta/SwapiMaui/blob/4c1eebb8762fbb9463296a0358ccd75ebe734b69/src/SwapiApp/SwapiApp.csproj#L56) & [conditional compile](https://github.com/Axemasta/SwapiMaui/blob/cb8316da4eee6cda4332fea49732e260103e7463/src/SwapiApp/MauiProgram.cs#L33).
 
-![Charles inspection from the app](assets/Charles_Inspection.png)
+![Charles inspection from the app](assets/Charles_Inspection_Ios.png)
 
 ## Android
 
-I haven't demonstrated this from this sample app. I need to setup my emulator with an access point to demonstrate it working correctly.
+Setup your emulator as described in [this guide](https://gist.github.com/twaddington/54eda4951fd8d2e858b537bef5f22334).
+
+There is no other code changed needed to get traffic inspection working.
+
+![Traffic inspection in android app](assets/Charles_Inspection_Android.png)
