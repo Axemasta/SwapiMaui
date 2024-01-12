@@ -14,7 +14,7 @@
         <WindowsTargetFramework>net8.0-windows10.0.19041.0</WindowsTargetFramework>
 
         <MauiPlatformTargetFrameworks>$(AndroidTargetFramework);$(IosTargetFramework);$(MacTargetFramework)</MauiPlatformTargetFrameworks>
-        <MauiPlatformTargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(AndroidTargetFramework);$(IosTargetFramework);$(MacTargetFramework)$(WindowsTargetFramework)</MauiPlatformTargetFrameworks>
+        <MauiPlatformTargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(AndroidTargetFramework);$(IosTargetFramework);$(MacTargetFramework);$(WindowsTargetFramework)</MauiPlatformTargetFrameworks>
     </PropertyGroup>
 
 </Project>
